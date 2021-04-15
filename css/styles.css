@@ -84,6 +84,15 @@ form {
   margin-top: 25px;
 }
 
+.hidden {
+  display: none;
+}
+
+.results h2 {
+  color: #9f9d9d;
+  margin-left: 30px;
+}
+
 @media (max-width: 667px) {
   #food-choices {
     width: 90px;
