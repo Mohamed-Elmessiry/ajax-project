@@ -1,3 +1,7 @@
+body {
+  background-color: orange;
+}
+
 header {
   background-color: #62605c;
   font-family: 'Anton', sans-serif;
@@ -19,26 +23,19 @@ header {
   background-color: #ffa500;
   display: flex;
   flex-direction: column;
-  height: 800px;
 }
 
 h2 {
   color: white;
   font-family: 'Anton', sans-serif;
   font-size: 80px;
-  margin: 0;
 }
 
-.main-one {
+.main {
   text-align: center;
-  height: 266px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.main-two {
-  height: 532px;
 }
 
 .dish-input {

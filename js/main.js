@@ -1,7 +1,7 @@
 
 var searchInput = document.querySelector('.dish-input');
 var button = document.querySelector('.search');
-button.addEventListener('click', handleSearchSubmit);
+button.addEventListener('submit', handleSearchSubmit);
 
 function getRecipesBySearchTerm(searchTerm) {
   var request = new XMLHttpRequest();
