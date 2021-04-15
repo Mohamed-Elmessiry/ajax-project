@@ -4,7 +4,7 @@ header {
   color: white;
   display: flex;
   justify-content: flex-end;
-  height: 100px;
+  height: 80px;
 }
 
 .top-links {
@@ -84,7 +84,7 @@ form {
 }
 
 .top-links a {
-  margin-top: 35px;
+  margin-top: 25px;
 }
 
 @media (max-width: 667px) {
