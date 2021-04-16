@@ -84,6 +84,39 @@ form {
   margin-top: 25px;
 }
 
+.results h2 {
+  color: #9f9d9d;
+  margin-left: 30px;
+  font-size: 40px;
+}
+
+.body-active {
+  background-color: white;
+}
+
+.header-active {
+  background-color: orange;
+}
+
+h1 {
+  font-family: 'Galada', sans-serif;
+}
+
+.result-holder {
+  text-align: center;
+}
+
+.results-photo-div {
+  height: 300px;
+  background-repeat: no-repeat;
+  text-align: center;
+  background-size: cover;
+}
+
+.hidden {
+  display: none;
+}
+
 @media (max-width: 667px) {
   #food-choices {
     width: 90px;
@@ -101,5 +134,13 @@ form {
 
   .dish-input {
     width: 60%;
+  }
+
+  .results h2 {
+    font-size: 25px;
+  }
+
+  .results-photo-div {
+    height: 200px;
   }
 }
