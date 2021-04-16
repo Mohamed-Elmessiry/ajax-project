@@ -8,7 +8,12 @@ formSelector.addEventListener('submit', handleSearchSubmit);
 
 var resultsContainer = document.querySelector('.results');
 
-// var homeButton = document.querySelector('.home');
+var container = document.querySelector('.container');
+var body = document.querySelector('body');
+
+var header = document.querySelector('header');
+
+var homeButton = document.querySelector('.home');
 
 function getRecipesBySearchTerm(searchTerm) {
   var request = new XMLHttpRequest();
@@ -28,15 +33,28 @@ function getRecipesBySearchTerm(searchTerm) {
 function handleSearchSubmit() {
   getRecipesBySearchTerm(searchInput.value);
   event.preventDefault();
+  container.className = 'hidden';
+  body.className = 'body-active';
+  header.className = 'header-active';
+  resultsContainer.className = 'results';
+
 }
+
+homeButton.addEventListener('click', function () {
+  container.className = 'container';
+  body.className = 'body';
+  header.className = 'header';
+  resultsContainer.className = 'hidden';
+});
 
 function createElement(obj) {
 
   var resultHolder = document.createElement('div');
   resultHolder.setAttribute('class', 'result-holder');
-  var photo = document.createElement('img');
-  photo.setAttribute('src', obj.recipe.image);
-  resultHolder.appendChild(photo);
+  var photoDiv = document.createElement('div');
+  photoDiv.style.backgroundImage = 'url(' + obj.recipe.image + ')';
+  photoDiv.setAttribute('class', 'results-photo-div');
+  resultHolder.appendChild(photoDiv);
   var dishName = document.createElement('h1');
   dishName.innerHTML = obj.recipe.label;
   resultHolder.appendChild(dishName);
