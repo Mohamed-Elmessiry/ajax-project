@@ -113,6 +113,59 @@ h1 {
   background-size: cover;
 }
 
+.save-to-favorites {
+  background-color: #ffa500;
+  font-size: 11px;
+  font-family: 'Anton', sans-serif;
+  color: white;
+  border: none;
+  width: 118px;
+  height: 33px;
+  margin-left: 50px;
+  border-radius: 5px;
+}
+
+.view-full-recipe {
+  background-color: #ffa500;
+  font-size: 11px;
+  font-family: 'Anton', sans-serif;
+  color: white;
+  border: none;
+  width: 118px;
+  height: 33px;
+  margin-right: 50px;
+  border-radius: 5px;
+}
+
+.list-holder {
+  text-align: left;
+  line-height: 3;
+}
+
+.ingredients-heading {
+  text-align: left;
+  margin: 30px;
+  font-family: 'Anton', sans-serif;
+  color: #4b4b4b;
+}
+
+.list-element {
+  font-size: 10px;
+  font-family: 'andika', sans-serif;
+}
+
+.buttons-holder {
+  display: flex;
+  justify-content: center;
+}
+
+.results-photo-div-adjusted {
+  height: 200px;
+  background-repeat: no-repeat;
+  text-align: center;
+  background-size: cover;
+}
+
 .hidden {
   display: none;
 }
