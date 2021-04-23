@@ -23,7 +23,7 @@ function getRecipesBySearchTerm(searchTerm) {
     dataArray = request.response;
 
     for (var i = 0; i < dataArray.hits.length; i++) {
-      createElement(dataArray.hits[i]);
+      resultsContainer.appendChild(createElement(dataArray.hits[i]));
     }
 
   });
@@ -63,57 +63,66 @@ function createElement(obj) {
   dishName.innerHTML = obj.recipe.label;
   resultHolder.appendChild(dishName);
 
-  resultsContainer.appendChild(resultHolder);
+  return resultHolder;
 
 }
 
 var singleResultDiv = document.querySelector('.single-result');
 
-resultsContainer.addEventListener('click', function (event) {
+function createDomTree(hit) {
+  var singleResultHolder = document.createElement('div');
+  singleResultHolder.setAttribute('class', 'result-holder-single');
+  var image = document.createElement('div');
+  image.setAttribute('class', 'results-photo-div');
+  image.style.backgroundImage = 'url(' + hit.recipe.image + ')';
+  singleResultHolder.appendChild(image);
+
+  var textContentHolder = document.createElement('div');
+  textContentHolder.className = 'text-content-holder';
+  singleResultHolder.appendChild(textContentHolder);
+
+  var dishName = document.createElement('h1');
+  dishName.className = 'dish-name';
+  dishName.textContent = hit.recipe.label;
+  textContentHolder.appendChild(dishName);
+  var ingredientsLabel = document.createElement('h4');
+  ingredientsLabel.className = 'ingredients-heading';
+  ingredientsLabel.textContent = 'Ingredients';
+  textContentHolder.appendChild(ingredientsLabel);
+  var ingredientsList = document.createElement('ul');
+  ingredientsList.className = 'list-holder';
+  textContentHolder.appendChild(ingredientsList);
+  for (var k = 0; k < hit.recipe.ingredientLines.length; k++) {
+    var ingredientsContent = document.createElement('li');
+    ingredientsContent.textContent = hit.recipe.ingredientLines[k];
+    ingredientsList.appendChild(ingredientsContent);
+    ingredientsContent.className = 'list-element';
+  }
+  var buttonDiv = document.createElement('div');
+  buttonDiv.setAttribute('class', 'buttons-holder');
+  textContentHolder.appendChild(buttonDiv);
+  var fullRecipeButton = document.createElement('a');
+  fullRecipeButton.value = 'View Full Recipe';
+  fullRecipeButton.textContent = 'View Full Recipe';
+  fullRecipeButton.className = 'view-full-recipe';
+  fullRecipeButton.setAttribute('href', hit.recipe.url);
+  buttonDiv.appendChild(fullRecipeButton);
+  var saveButton = document.createElement('button');
+  saveButton.textContent = 'Save to Favourties';
+  saveButton.className = 'save-to-favorites';
+  buttonDiv.appendChild(saveButton);
+
+  return singleResultHolder;
+
+}
+
+resultsContainer.addEventListener('click', function SingleDishDisplay(event) {
   if (event.target.matches('.results-photo-div')) {
     for (var i = 0; i < dataArray.hits.length; i++) {
       if (dataArray.hits[i].recipe.label === event.target.getAttribute('id')) {
         resultsContainer.className = 'hidden';
-        var singleResultHolder = document.createElement('div');
-        singleResultHolder.setAttribute('class', 'result-holder-single');
-        var image = document.createElement('div');
-        image.setAttribute('class', 'results-photo-div');
-        image.style.backgroundImage = 'url(' + dataArray.hits[i].recipe.image + ')';
-        singleResultHolder.appendChild(image);
-        var dishName = document.createElement('h1');
-        dishName.className = 'dish-name';
-        dishName.textContent = dataArray.hits[i].recipe.label;
-        singleResultHolder.appendChild(dishName);
-        var ingredientsLabel = document.createElement('h4');
-        ingredientsLabel.className = 'ingredients-heading';
-        ingredientsLabel.textContent = 'Ingredients';
-        singleResultHolder.appendChild(ingredientsLabel);
-        var ingredientsList = document.createElement('ul');
-        ingredientsList.className = 'list-holder';
-        singleResultHolder.appendChild(ingredientsList);
-        for (var k = 0; k < dataArray.hits[i].recipe.ingredientLines.length; k++) {
-          var ingredientsContent = document.createElement('li');
-          ingredientsContent.textContent = dataArray.hits[i].recipe.ingredientLines[k];
-          ingredientsList.appendChild(ingredientsContent);
-          ingredientsContent.className = 'list-element';
-        }
-        var buttonDiv = document.createElement('div');
-        buttonDiv.setAttribute('class', 'buttons-holder');
-        singleResultHolder.appendChild(buttonDiv);
-        var fullRecipeButton = document.createElement('button');
-        fullRecipeButton.value = 'View Full Recipe';
-        fullRecipeButton.textContent = 'View Full Recipe';
-        fullRecipeButton.className = 'view-full-recipe';
-        fullRecipeButton.addEventListener('click', function () {
-          document.location = dataArray.hits[i].recipe.url;
-        });
-        buttonDiv.appendChild(fullRecipeButton);
-        var saveButton = document.createElement('button');
-        saveButton.textContent = 'Save to Favourties';
-        saveButton.className = 'save-to-favorites';
-        buttonDiv.appendChild(saveButton);
 
-        singleResultDiv.appendChild(singleResultHolder);
+        singleResultDiv.appendChild(createDomTree(dataArray.hits[i]));
       }
     }
 

@@ -138,24 +138,28 @@ h1 {
   height: 33px;
   margin-right: 100px;
   border-radius: 5px;
+  text-decoration: none;
+  padding-top: 8px;
+}
+
+.text-content-holder {
+  max-width: 600px;
+  margin: auto;
 }
 
 .list-holder {
   line-height: 3;
-  margin-left: 336px;
   width: 100%;
 }
 
 .ingredients-heading {
   font-family: 'Anton', sans-serif;
   color: #4b4b4b;
-  margin-right: 650px;
 }
 
 .list-element {
   font-size: 10px;
   font-family: 'andika', sans-serif;
-  margin-right: 870px;
   text-align: left;
   width: 100%;
 }
