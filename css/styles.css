@@ -88,6 +88,7 @@ form {
   color: #9f9d9d;
   margin-left: 30px;
   font-size: 40px;
+  width: 100%;
 }
 
 .body-active {
@@ -103,6 +104,8 @@ h1 {
 }
 
 .result-holder {
+  width: calc(100% / 3);
+  padding: 20px;
   text-align: center;
 }
 
@@ -111,6 +114,86 @@ h1 {
   background-repeat: no-repeat;
   text-align: center;
   background-size: cover;
+}
+
+.save-to-favorites {
+  background-color: #ffa500;
+  font-size: 11px;
+  font-family: 'Anton', sans-serif;
+  color: white;
+  border: none;
+  width: 118px;
+  height: 33px;
+  margin-left: 50px;
+  border-radius: 5px;
+}
+
+.view-full-recipe {
+  background-color: #ffa500;
+  font-size: 11px;
+  font-family: 'Anton', sans-serif;
+  color: white;
+  border: none;
+  width: 118px;
+  height: 33px;
+  margin-right: 100px;
+  border-radius: 5px;
+  text-decoration: none;
+  padding-top: 8px;
+}
+
+.text-content-holder {
+  max-width: 600px;
+  margin: auto;
+}
+
+.list-holder {
+  line-height: 3;
+  width: 100%;
+}
+
+.ingredients-heading {
+  font-family: 'Anton', sans-serif;
+  color: #4b4b4b;
+}
+
+.list-element {
+  font-size: 10px;
+  font-family: 'andika', sans-serif;
+  text-align: left;
+  width: 100%;
+}
+
+.buttons-holder {
+  display: flex;
+  justify-content: center;
+}
+
+.results-photo-div-adjusted {
+  height: 200px;
+  background-repeat: no-repeat;
+  text-align: center;
+  background-size: cover;
+}
+
+.results {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.results-single {
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.result-holder-single {
+  text-align: center;
+}
+
+.dish-name {
+  text-align: center;
 }
 
 .hidden {
@@ -142,5 +225,34 @@ h1 {
 
   .results-photo-div {
     height: 200px;
+  }
+
+  .ingredients-heading {
+    text-align: left;
+    margin: 30px;
+    font-family: 'Anton', sans-serif;
+    color: #4b4b4b;
+  }
+
+  .list-element {
+    font-size: 10px;
+    font-family: 'andika', sans-serif;
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .list-holder {
+    line-height: 3;
+    margin-left: 0;
+  }
+
+  .result-holder {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+
+  .view-full-recipe {
+    margin-right: 0;
   }
 }
