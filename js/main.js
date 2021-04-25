@@ -1,3 +1,5 @@
+/* global data */
+/* exported data */
 
 var searchInput = document.querySelector('.dish-input');
 
@@ -111,6 +113,22 @@ function createDomTree(hit) {
   saveButton.textContent = 'Save to Favourties';
   saveButton.className = 'save-to-favorites';
   buttonDiv.appendChild(saveButton);
+  saveButton.addEventListener('click', function save() {
+    var listItemsSelector = document.querySelectorAll('.list-element');
+    var values = {
+      photo: image.style.backgroundImage,
+      dish: dishName.textContent,
+      ingredients: [],
+      link: fullRecipeButton.href
+
+    };
+    for (var i = 0; i < listItemsSelector.length; i++) {
+      values.ingredients.push(listItemsSelector[i].textContent);
+
+    }
+    data.favorites.unshift(values);
+
+  });
 
   return singleResultHolder;
 
@@ -128,3 +146,30 @@ resultsContainer.addEventListener('click', function SingleDishDisplay(event) {
 
   }
 });
+
+var favoritesButton = document.querySelector('.favorites-button');
+favoritesButton.addEventListener('click', function () {
+
+  createFavorites(data);
+});
+var favoritesContainer = document.querySelector('.favorites');
+
+function displayFavorites(obj) {
+  var favoritesDiv = document.createElement('div');
+  favoritesDiv.setAttribute('class', 'favorites-div');
+  var photo = document.createElement('div');
+  photo.style.backgroundImage = obj.photo;
+  favoritesDiv.appendChild(photo);
+
+  return favoritesDiv;
+
+  // favoritesContainer.appendChild(favoritesDiv);
+
+}
+
+function createFavorites(favoritesObject) {
+  for (var i = 0; i < favoritesObject.favorites.length; i++) {
+    favoritesContainer.appendChild(displayFavorites(data.favorites[i]));
+
+  }
+}
