@@ -48,6 +48,7 @@ homeButton.addEventListener('click', function () {
   header.className = 'header';
   resultsContainer.className = 'hidden';
   singleResultDiv.className = 'hidden';
+  favoritesContainer.className = 'favorites hidden';
 
 });
 
@@ -149,6 +150,12 @@ resultsContainer.addEventListener('click', function SingleDishDisplay(event) {
 
 var favoritesButton = document.querySelector('.favorites-button');
 favoritesButton.addEventListener('click', function () {
+  singleResultDiv.className = 'single-result hidden';
+  container.className = 'container hidden';
+  body.className = 'body-active';
+  resultsContainer.className = 'results hidden';
+  header.className = 'header-active';
+  favoritesContainer.className = 'favorites';
 
   createFavorites(data);
 });
@@ -158,8 +165,12 @@ function displayFavorites(obj) {
   var favoritesDiv = document.createElement('div');
   favoritesDiv.setAttribute('class', 'favorites-div');
   var photo = document.createElement('div');
+  photo.className = 'favorites-photo';
   photo.style.backgroundImage = obj.photo;
   favoritesDiv.appendChild(photo);
+  var dish = document.createElement('h1');
+  dish.textContent = obj.dish;
+  favoritesDiv.appendChild(dish);
 
   return favoritesDiv;
 
