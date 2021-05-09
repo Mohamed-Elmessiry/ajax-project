@@ -227,6 +227,18 @@ h1 {
   text-align: center;
 }
 
+.add-notes {
+  background-color: #ffa500;
+  font-size: 11px;
+  font-family: 'Anton', sans-serif;
+  color: white;
+  border: none;
+  width: 118px;
+  height: 33px;
+  margin-left: 50px;
+  border-radius: 5px;
+}
+
 @media (max-width: 667px) {
   #food-choices {
     width: 90px;

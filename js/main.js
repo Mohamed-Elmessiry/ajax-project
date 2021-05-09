@@ -33,6 +33,10 @@ function getRecipesBySearchTerm(searchTerm) {
 }
 
 function handleSearchSubmit() {
+  // var resultHolder = document.querySelectorAll('.result-holder');
+  // if (resultHolder) {
+  //   resultHolder.remove();
+  // }
   getRecipesBySearchTerm(searchInput.value);
   event.preventDefault();
   container.className = 'hidden';
@@ -46,9 +50,10 @@ homeButton.addEventListener('click', function () {
   container.className = 'container';
   body.className = 'body';
   header.className = 'header';
-  resultsContainer.className = 'hidden';
+  resultsContainer.className = 'results hidden';
   singleResultDiv.className = 'hidden';
   favoritesContainer.className = 'favorites hidden';
+  singleDiv.className = 'single-favorite hidden';
 
 });
 
@@ -115,6 +120,15 @@ function createDomTree(hit) {
   saveButton.className = 'save-to-favorites';
   buttonDiv.appendChild(saveButton);
   saveButton.addEventListener('click', function save() {
+
+    for (var i = 0; i < data.favorites.length; i++) {
+      if (data.favorites[i].dish === dishName.textContent) {
+        return;
+      }
+
+      // if(data.favorites.dish[i]===)
+
+    }
     var listItemsSelector = document.querySelectorAll('.list-element');
     var values = {
       photo: image.style.backgroundImage,
@@ -123,8 +137,8 @@ function createDomTree(hit) {
       link: fullRecipeButton.href
 
     };
-    for (var i = 0; i < listItemsSelector.length; i++) {
-      values.ingredients.push(listItemsSelector[i].textContent);
+    for (var k = 0; i < listItemsSelector.length; k++) {
+      values.ingredients.push(listItemsSelector[k].textContent);
 
     }
     data.favorites.unshift(values);
@@ -136,6 +150,7 @@ function createDomTree(hit) {
 }
 
 resultsContainer.addEventListener('click', function SingleDishDisplay(event) {
+
   if (event.target.matches('.results-photo-div')) {
     for (var i = 0; i < dataArray.hits.length; i++) {
       if (dataArray.hits[i].recipe.label === event.target.getAttribute('id')) {
@@ -189,14 +204,24 @@ function createFavorites(favoritesObject) {
 var singleDiv = document.querySelector('.single-favorite');
 
 favoritesContainer.addEventListener('click', function () {
+  // while (singleDiv.firstChild) {
+  //   singleDiv.removeChild(singleDiv.firstChild);
+  // }
   if (event.target.matches('.favorites-photo')) {
+    var favDiv = document.querySelector('.fav-holder-single');
+    if (favDiv) {
+      favDiv.remove();
+    }
+
     for (var i = 0; i < data.favorites.length; i++) {
       if (data.favorites[i].dish === event.target.getAttribute('id')) {
+        // singleDiv.remove();
         singleDiv.appendChild(createSingleFavorite(data.favorites[i]));
 
       }
 
     }
+    favoritesContainer.className = 'favorites hidden';
   }
 
 });
@@ -205,8 +230,8 @@ function createSingleFavorite(fav) {
   var singleFavHolder = document.createElement('div');
   singleFavHolder.setAttribute('class', 'fav-holder-single');
   var singleFavImage = document.createElement('div');
-  singleFavImage.setAttribute('class', 'single-fav-image');
-  singleFavImage.style.backgroundImage = 'url(' + fav.photo + ')';
+  singleFavImage.setAttribute('class', 'results-photo-div');
+  singleFavImage.style.backgroundImage = fav.photo;
   singleFavHolder.appendChild(singleFavImage);
   var favDishName = document.createElement('h1');
   favDishName.setAttribute('class', 'dish-name');
@@ -237,7 +262,11 @@ function createSingleFavorite(fav) {
   buttonDiv.setAttribute('class', 'button-div');
   singleFavHolder.appendChild(buttonDiv);
   var addNote = document.createElement('a');
+  addNote.setAttribute('class', 'add-notes');
   addNote.textContent = 'Add New Notes';
-  addNote.className = 'add-notes';
+  // addNote.className = 'add-notes';
+  buttonDiv.appendChild(addNote);
+
+  return singleFavHolder;
 
 }
