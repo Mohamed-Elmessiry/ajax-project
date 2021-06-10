@@ -33,10 +33,7 @@ function getRecipesBySearchTerm(searchTerm) {
 }
 
 function handleSearchSubmit() {
-  // var resultHolder = document.querySelectorAll('.result-holder');
-  // if (resultHolder) {
-  //   resultHolder.remove();
-  // }
+
   getRecipesBySearchTerm(searchInput.value);
   event.preventDefault();
   container.className = 'hidden';
@@ -126,8 +123,6 @@ function createDomTree(hit) {
         return;
       }
 
-      // if(data.favorites.dish[i]===)
-
     }
     var listItemsSelector = document.querySelectorAll('.list-element');
     var values = {
@@ -190,8 +185,6 @@ function displayFavorites(obj) {
 
   return favoritesDiv;
 
-  // favoritesContainer.appendChild(favoritesDiv);
-
 }
 
 function createFavorites(favoritesObject) {
@@ -204,9 +197,7 @@ function createFavorites(favoritesObject) {
 var singleDiv = document.querySelector('.single-favorite');
 
 favoritesContainer.addEventListener('click', function () {
-  // while (singleDiv.firstChild) {
-  //   singleDiv.removeChild(singleDiv.firstChild);
-  // }
+
   if (event.target.matches('.favorites-photo')) {
     var favDiv = document.querySelector('.fav-holder-single');
     if (favDiv) {
@@ -229,6 +220,10 @@ favoritesContainer.addEventListener('click', function () {
 function createSingleFavorite(fav) {
   var singleFavHolder = document.createElement('div');
   singleFavHolder.setAttribute('class', 'fav-holder-single');
+  var favtag = document.createElement('h3');
+  favtag.setAttribute('class', 'favorites-tag');
+  favtag.innerHTML = 'Favorites';
+  singleFavHolder.appendChild(favtag);
   var singleFavImage = document.createElement('div');
   singleFavImage.setAttribute('class', 'results-photo-div');
   singleFavImage.style.backgroundImage = fav.photo;
@@ -251,21 +246,23 @@ function createSingleFavorite(fav) {
   textDiv.appendChild(ingredientsList);
   for (var k = 0; k < fav.ingredients.length; k++) {
     var ingredientElement = document.createElement('li');
+    ingredientElement.setAttribute('class', 'list-element');
     ingredientElement.textContent = fav.ingredients[k];
     ingredientsList.appendChild(ingredientElement);
   }
-
+  var buttonNdivHolder = document.createElement('div');
+  buttonNdivHolder.setAttribute('class', 'button-n-div');
+  textDiv.appendChild(buttonNdivHolder);
   var notesHeading = document.createElement('h4');
+  notesHeading.setAttribute('class', 'notes-heading');
   notesHeading.textContent = 'Notes';
-  textDiv.appendChild(notesHeading);
-  var buttonDiv = document.createElement('div');
-  buttonDiv.setAttribute('class', 'button-div');
-  singleFavHolder.appendChild(buttonDiv);
+  buttonNdivHolder.appendChild(notesHeading);
+
   var addNote = document.createElement('a');
   addNote.setAttribute('class', 'add-notes');
   addNote.textContent = 'Add New Notes';
-  // addNote.className = 'add-notes';
-  buttonDiv.appendChild(addNote);
+
+  buttonNdivHolder.appendChild(addNote);
 
   return singleFavHolder;
 
