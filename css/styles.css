@@ -32,7 +32,7 @@ h2 {
 }
 
 .main {
-  text-align: center;
+  /* text-align: center; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,13 +106,11 @@ h1 {
 .result-holder {
   width: calc(100% / 3);
   padding: 20px;
-  text-align: center;
 }
 
 .results-photo-div {
   height: 300px;
   background-repeat: no-repeat;
-  text-align: center;
   background-size: cover;
 }
 
@@ -156,6 +154,7 @@ h1 {
   font-family: 'Anton', sans-serif;
   color: #4b4b4b;
   margin-left: 30px;
+  text-align: left;
 }
 
 .list-element {
@@ -173,7 +172,6 @@ h1 {
 .results-photo-div-adjusted {
   height: 200px;
   background-repeat: no-repeat;
-  text-align: center;
   background-size: cover;
 }
 
@@ -207,7 +205,6 @@ h1 {
 .favorites {
   display: flex;
   flex-direction: row;
-  width: 100%;
   flex-wrap: wrap;
 }
 
@@ -302,7 +299,6 @@ h1 {
     font-size: 10px;
     font-family: 'andika', sans-serif;
     margin-right: 0;
-    text-align: left;
   }
 
   .list-holder {
@@ -312,7 +308,6 @@ h1 {
 
   .result-holder {
     width: 100%;
-    text-align: center;
     padding: 0;
   }
 
@@ -331,7 +326,6 @@ h1 {
     color: #9f9d9d;
     margin-left: 30px;
     font-size: 30px;
-    width: 100%;
   }
 
   .header-active {
