@@ -1,3 +1,5 @@
+/* global data */
+/* exported data */
 
 var searchInput = document.querySelector('.dish-input');
 
@@ -31,6 +33,7 @@ function getRecipesBySearchTerm(searchTerm) {
 }
 
 function handleSearchSubmit() {
+
   getRecipesBySearchTerm(searchInput.value);
   event.preventDefault();
   container.className = 'hidden';
@@ -44,8 +47,10 @@ homeButton.addEventListener('click', function () {
   container.className = 'container';
   body.className = 'body';
   header.className = 'header';
-  resultsContainer.className = 'hidden';
+  resultsContainer.className = 'results hidden';
   singleResultDiv.className = 'hidden';
+  favoritesContainer.className = 'favorites hidden';
+  singleDiv.className = 'single-favorite hidden';
 
 });
 
@@ -111,12 +116,36 @@ function createDomTree(hit) {
   saveButton.textContent = 'Save to Favourties';
   saveButton.className = 'save-to-favorites';
   buttonDiv.appendChild(saveButton);
+  saveButton.addEventListener('click', function save() {
+
+    for (var i = 0; i < data.favorites.length; i++) {
+      if (data.favorites[i].dish === dishName.textContent) {
+        return;
+      }
+
+    }
+    var listItemsSelector = document.querySelectorAll('.list-element');
+    var values = {
+      photo: image.style.backgroundImage,
+      dish: dishName.textContent,
+      ingredients: [],
+      link: fullRecipeButton.href
+
+    };
+    for (var k = 0; i < listItemsSelector.length; k++) {
+      values.ingredients.push(listItemsSelector[k].textContent);
+
+    }
+    data.favorites.unshift(values);
+
+  });
 
   return singleResultHolder;
 
 }
 
 resultsContainer.addEventListener('click', function SingleDishDisplay(event) {
+
   if (event.target.matches('.results-photo-div')) {
     for (var i = 0; i < dataArray.hits.length; i++) {
       if (dataArray.hits[i].recipe.label === event.target.getAttribute('id')) {
@@ -128,3 +157,113 @@ resultsContainer.addEventListener('click', function SingleDishDisplay(event) {
 
   }
 });
+
+var favoritesButton = document.querySelector('.favorites-button');
+favoritesButton.addEventListener('click', function () {
+  singleResultDiv.className = 'single-result hidden';
+  container.className = 'container hidden';
+  body.className = 'body-active';
+  resultsContainer.className = 'results hidden';
+  header.className = 'header-active';
+  favoritesContainer.className = 'favorites';
+
+  createFavorites(data);
+});
+var favoritesContainer = document.querySelector('.favorites');
+
+function displayFavorites(obj) {
+  var favoritesDiv = document.createElement('div');
+  favoritesDiv.setAttribute('class', 'favorites-div');
+  var photo = document.createElement('div');
+  photo.className = 'favorites-photo';
+  photo.style.backgroundImage = obj.photo;
+  photo.setAttribute('id', obj.dish);
+  favoritesDiv.appendChild(photo);
+  var dish = document.createElement('h1');
+  dish.textContent = obj.dish;
+  favoritesDiv.appendChild(dish);
+
+  return favoritesDiv;
+
+}
+
+function createFavorites(favoritesObject) {
+  for (var i = 0; i < favoritesObject.favorites.length; i++) {
+    favoritesContainer.appendChild(displayFavorites(data.favorites[i]));
+
+  }
+}
+
+var singleDiv = document.querySelector('.single-favorite');
+
+favoritesContainer.addEventListener('click', function () {
+
+  if (event.target.matches('.favorites-photo')) {
+    var favDiv = document.querySelector('.fav-holder-single');
+    if (favDiv) {
+      favDiv.remove();
+    }
+
+    for (var i = 0; i < data.favorites.length; i++) {
+      if (data.favorites[i].dish === event.target.getAttribute('id')) {
+        // singleDiv.remove();
+        singleDiv.appendChild(createSingleFavorite(data.favorites[i]));
+
+      }
+
+    }
+    favoritesContainer.className = 'favorites hidden';
+  }
+
+});
+
+function createSingleFavorite(fav) {
+  var singleFavHolder = document.createElement('div');
+  singleFavHolder.setAttribute('class', 'fav-holder-single');
+  var favtag = document.createElement('h3');
+  favtag.setAttribute('class', 'favorites-tag');
+  favtag.innerHTML = 'Favorites';
+  singleFavHolder.appendChild(favtag);
+  var singleFavImage = document.createElement('div');
+  singleFavImage.setAttribute('class', 'results-photo-div');
+  singleFavImage.style.backgroundImage = fav.photo;
+  singleFavHolder.appendChild(singleFavImage);
+  var favDishName = document.createElement('h1');
+  favDishName.setAttribute('class', 'dish-name');
+  favDishName.textContent = fav.dish;
+  singleFavHolder.appendChild(favDishName);
+
+  var textDiv = document.createElement('div');
+  textDiv.setAttribute('class', 'text-div');
+  singleFavHolder.appendChild(textDiv);
+  var ingredientsLabel = document.createElement('h4');
+  ingredientsLabel.className = 'ingredients-heading';
+  ingredientsLabel.textContent = 'Ingredients';
+  textDiv.appendChild(ingredientsLabel);
+
+  var ingredientsList = document.createElement('ul');
+  ingredientsList.className = 'list-holder';
+  textDiv.appendChild(ingredientsList);
+  for (var k = 0; k < fav.ingredients.length; k++) {
+    var ingredientElement = document.createElement('li');
+    ingredientElement.setAttribute('class', 'list-element');
+    ingredientElement.textContent = fav.ingredients[k];
+    ingredientsList.appendChild(ingredientElement);
+  }
+  var buttonNdivHolder = document.createElement('div');
+  buttonNdivHolder.setAttribute('class', 'button-n-div');
+  textDiv.appendChild(buttonNdivHolder);
+  var notesHeading = document.createElement('h4');
+  notesHeading.setAttribute('class', 'notes-heading');
+  notesHeading.textContent = 'Notes';
+  buttonNdivHolder.appendChild(notesHeading);
+
+  var addNote = document.createElement('a');
+  addNote.setAttribute('class', 'add-notes');
+  addNote.textContent = 'Add New Notes';
+
+  buttonNdivHolder.appendChild(addNote);
+
+  return singleFavHolder;
+
+}
