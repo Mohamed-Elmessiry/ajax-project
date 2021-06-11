@@ -276,7 +276,16 @@ function addNoteClick() {
   divHolder.setAttribute('class', 'notes-holder');
 
   var divNote = document.createElement('div');
+  divNote.setAttribute('class', 'divNote');
   divHolder.appendChild(divNote);
+  var closeButtonHolder = document.createElement('div');
+  closeButtonHolder.setAttribute('class', 'close-button-holder');
+  divNote.appendChild(closeButtonHolder);
+  var closeButton = document.createElement('button');
+  closeButton.innerHTML = 'x';
+  closeButton.setAttribute('class', 'close-button');
+  closeButton.addEventListener('click', removeNoteClick);
+  closeButtonHolder.appendChild(closeButton);
   var addHeader = document.createElement('h3');
   addHeader.innerHTML = 'Add Note';
   addHeader.setAttribute('class', 'add-header');
@@ -303,8 +312,15 @@ function addNoteClick() {
 function saveNoteClick() {
   // eslint-disable-next-line no-unused-vars
   var note = document.getElementById('textAreaNote').value;
+  // if(event.target)
 
   // data[GV_FAV_IDX].notes.push (note);
 
   // alert('saveNoteClick: ' + note);
+}
+
+function removeNoteClick() {
+  var notesHolder = document.querySelector('.notes-holder');
+  notesHolder.remove();
+
 }

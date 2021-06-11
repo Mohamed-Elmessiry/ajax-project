@@ -276,7 +276,7 @@ h1 {
 }
 
 .notes-holder {
-  height: 100vh;
+  height: 950px;
   position: absolute;
   width: 89%;
   margin-left: 70px;
@@ -284,6 +284,26 @@ h1 {
   background-color: white;
   border: solid orange;
   text-align: center;
+}
+
+#textAreaNote {
+  width: 90%;
+  height: 741px;
+}
+
+.divNote {
+  height: 1000px;
+}
+
+.close-button {
+  border: none;
+  background: no-repeat;
+  font-size: 20px;
+  padding: 25px;
+}
+
+.close-button-holder {
+  text-align: right;
 }
 
 @media (max-width: 667px) {
@@ -365,5 +385,20 @@ h1 {
     position: absolute;
     top: 30%;
     left: 30%;
+  }
+
+  .notes-holder {
+    height: 700px;
+    margin-left: 40px;
+  }
+
+  #textAreaNote {
+    width: 90%;
+    height: 500px;
+  }
+
+  .divNote {
+    height: 400px;
+    text-align: center;
   }
 }
