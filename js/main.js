@@ -207,7 +207,7 @@ favoritesContainer.addEventListener('click', function () {
     for (var i = 0; i < data.favorites.length; i++) {
       if (data.favorites[i].dish === event.target.getAttribute('id')) {
         // singleDiv.remove();
-        singleDiv.appendChild(createSingleFavorite(data.favorites[i]));
+        singleDiv.appendChild(createSingleFavorite(data.favorites[i], i));
 
       }
 
@@ -216,8 +216,11 @@ favoritesContainer.addEventListener('click', function () {
   }
 
 });
-
-function createSingleFavorite(fav) {
+var GV_FAV_IDX = -1;
+function createSingleFavorite(fav, idx) {
+  // eslint-disable-next-line no-unused-vars
+  GV_FAV_IDX = idx;
+  // console.log(fav);
   var singleFavHolder = document.createElement('div');
   singleFavHolder.setAttribute('class', 'fav-holder-single');
   var favtag = document.createElement('h3');
@@ -261,9 +264,47 @@ function createSingleFavorite(fav) {
   var addNote = document.createElement('a');
   addNote.setAttribute('class', 'add-notes');
   addNote.textContent = 'Add New Notes';
-
+  addNote.addEventListener('click', addNoteClick);
   buttonNdivHolder.appendChild(addNote);
 
   return singleFavHolder;
 
+}
+function addNoteClick() {
+
+  var divHolder = document.createElement('div');
+  divHolder.setAttribute('class', 'notes-holder');
+
+  var divNote = document.createElement('div');
+  divHolder.appendChild(divNote);
+  var addHeader = document.createElement('h3');
+  addHeader.innerHTML = 'Add Note';
+  addHeader.setAttribute('class', 'add-header');
+  divNote.appendChild(addHeader);
+  var ta = document.createElement('textarea');
+  ta.setAttribute('id', 'textAreaNote');
+  divNote.appendChild(ta);
+
+  var buttonDiv = document.createElement('div');
+  divNote.appendChild(buttonDiv);
+
+  var btn = document.createElement('button');
+  btn.setAttribute('class', 'save-note-button');
+  btn.innerHTML = 'Submit';
+  btn.addEventListener('click', saveNoteClick);
+  buttonDiv.appendChild(btn);
+  // document.getElementById('divSingle').innerHTML = '';
+  document.getElementById('divSingle').appendChild(divHolder);
+
+  // alert('add note');
+  // console.log(data);
+
+}
+function saveNoteClick() {
+  // eslint-disable-next-line no-unused-vars
+  var note = document.getElementById('textAreaNote').value;
+
+  // data[GV_FAV_IDX].notes.push (note);
+
+  // alert('saveNoteClick: ' + note);
 }
