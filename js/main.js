@@ -207,7 +207,6 @@ favoritesContainer.addEventListener('click', function () {
 
     for (var i = 0; i < data.favorites.length; i++) {
       if (data.favorites[i].dish === event.target.getAttribute('id')) {
-        // singleDiv.remove();
 
         currentFavoriteDish = data.favorites[i];
         if (!currentFavoriteDish.notes) {
@@ -221,11 +220,8 @@ favoritesContainer.addEventListener('click', function () {
   }
 
 });
-// var GV_FAV_IDX = -1;
 function createSingleFavorite(fav) {
-  // eslint-disable-next-line no-unused-vars
-  // GV_FAV_IDX = idx;
-  // console.log(fav);
+
   var singleFavHolder = document.createElement('div');
   singleFavHolder.setAttribute('class', 'fav-holder-single');
   var favtag = document.createElement('h3');
@@ -277,8 +273,8 @@ function createSingleFavorite(fav) {
   singleFavHolder.appendChild(notesList);
 
   for (var i = 0; i < fav.notes.length; i++) {
-    // displayNote(fav.notes[i]);
     var singleNote = document.createElement('li');
+    singleNote.setAttribute('class', 'fav-notes');
     singleNote.textContent = fav.notes[i];
     notesList.appendChild(singleNote);
   }
@@ -317,29 +313,16 @@ function addNoteClick() {
   btn.innerHTML = 'Submit';
   btn.addEventListener('click', saveNoteClick);
   buttonDiv.appendChild(btn);
-  // document.getElementById('divSingle').innerHTML = '';
   document.getElementById('divSingle').appendChild(divHolder);
-
-  // alert('add note');
-  // console.log(data);
 
 }
 function saveNoteClick() {
-  // eslint-disable-next-line no-unused-vars
   var note = document.getElementById('textAreaNote').value;
-  // for (var i = 0; i < data.length; i++) {
-  //   if (event.target[i] === data[i]) {
-  //     console.log('matches');
-  //   }
-  // }
 
   currentFavoriteDish.notes.push(note);
   displayNote(note);
   removeNoteClick();
 
-  // data[GV_FAV_IDX].notes.push (note);
-
-  // alert('saveNoteClick: ' + note);
 }
 
 function removeNoteClick() {
