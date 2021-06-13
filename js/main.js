@@ -195,6 +195,7 @@ function createFavorites(favoritesObject) {
 }
 
 var singleDiv = document.querySelector('.single-favorite');
+var currentFavoriteDish = null;
 
 favoritesContainer.addEventListener('click', function () {
 
@@ -207,8 +208,12 @@ favoritesContainer.addEventListener('click', function () {
     for (var i = 0; i < data.favorites.length; i++) {
       if (data.favorites[i].dish === event.target.getAttribute('id')) {
         // singleDiv.remove();
-        singleDiv.appendChild(createSingleFavorite(data.favorites[i], i));
 
+        currentFavoriteDish = data.favorites[i];
+        if (!currentFavoriteDish.notes) {
+          currentFavoriteDish.notes = [];
+        }
+        singleDiv.appendChild(createSingleFavorite(currentFavoriteDish));
       }
 
     }
@@ -216,10 +221,10 @@ favoritesContainer.addEventListener('click', function () {
   }
 
 });
-var GV_FAV_IDX = -1;
-function createSingleFavorite(fav, idx) {
+// var GV_FAV_IDX = -1;
+function createSingleFavorite(fav) {
   // eslint-disable-next-line no-unused-vars
-  GV_FAV_IDX = idx;
+  // GV_FAV_IDX = idx;
   // console.log(fav);
   var singleFavHolder = document.createElement('div');
   singleFavHolder.setAttribute('class', 'fav-holder-single');
@@ -267,6 +272,16 @@ function createSingleFavorite(fav, idx) {
   addNote.addEventListener('click', addNoteClick);
   buttonNdivHolder.appendChild(addNote);
 
+  var notesList = document.createElement('ul');
+  notesList.setAttribute('id', 'notes-list');
+  singleFavHolder.appendChild(notesList);
+
+  for (var i = 0; i < fav.notes.length; i++) {
+    // displayNote(fav.notes[i]);
+    var singleNote = document.createElement('li');
+    singleNote.textContent = fav.notes[i];
+    notesList.appendChild(singleNote);
+  }
   return singleFavHolder;
 
 }
@@ -312,7 +327,15 @@ function addNoteClick() {
 function saveNoteClick() {
   // eslint-disable-next-line no-unused-vars
   var note = document.getElementById('textAreaNote').value;
-  // if(event.target)
+  // for (var i = 0; i < data.length; i++) {
+  //   if (event.target[i] === data[i]) {
+  //     console.log('matches');
+  //   }
+  // }
+
+  currentFavoriteDish.notes.push(note);
+  displayNote(note);
+  removeNoteClick();
 
   // data[GV_FAV_IDX].notes.push (note);
 
@@ -323,4 +346,11 @@ function removeNoteClick() {
   var notesHolder = document.querySelector('.notes-holder');
   notesHolder.remove();
 
+}
+
+function displayNote(note) {
+  var notesContainer = document.getElementById('notes-list');
+  var singleNote = document.createElement('li');
+  singleNote.textContent = note;
+  notesContainer.appendChild(singleNote);
 }
