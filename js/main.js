@@ -195,6 +195,7 @@ function createFavorites(favoritesObject) {
 }
 
 var singleDiv = document.querySelector('.single-favorite');
+var currentFavoriteDish = null;
 
 favoritesContainer.addEventListener('click', function () {
 
@@ -206,9 +207,12 @@ favoritesContainer.addEventListener('click', function () {
 
     for (var i = 0; i < data.favorites.length; i++) {
       if (data.favorites[i].dish === event.target.getAttribute('id')) {
-        // singleDiv.remove();
-        singleDiv.appendChild(createSingleFavorite(data.favorites[i]));
 
+        currentFavoriteDish = data.favorites[i];
+        if (!currentFavoriteDish.notes) {
+          currentFavoriteDish.notes = [];
+        }
+        singleDiv.appendChild(createSingleFavorite(currentFavoriteDish));
       }
 
     }
@@ -216,8 +220,8 @@ favoritesContainer.addEventListener('click', function () {
   }
 
 });
-
 function createSingleFavorite(fav) {
+
   var singleFavHolder = document.createElement('div');
   singleFavHolder.setAttribute('class', 'fav-holder-single');
   var favtag = document.createElement('h3');
@@ -261,9 +265,75 @@ function createSingleFavorite(fav) {
   var addNote = document.createElement('a');
   addNote.setAttribute('class', 'add-notes');
   addNote.textContent = 'Add New Notes';
-
+  addNote.addEventListener('click', addNoteClick);
   buttonNdivHolder.appendChild(addNote);
 
+  var notesList = document.createElement('ul');
+  notesList.setAttribute('id', 'notes-list');
+  singleFavHolder.appendChild(notesList);
+
+  for (var i = 0; i < fav.notes.length; i++) {
+    var singleNote = document.createElement('li');
+    singleNote.setAttribute('class', 'fav-notes');
+    singleNote.textContent = fav.notes[i];
+    notesList.appendChild(singleNote);
+  }
   return singleFavHolder;
 
+}
+function addNoteClick() {
+
+  var divHolder = document.createElement('div');
+  divHolder.setAttribute('class', 'notes-holder');
+
+  var divNote = document.createElement('div');
+  divNote.setAttribute('class', 'divNote');
+  divHolder.appendChild(divNote);
+  var closeButtonHolder = document.createElement('div');
+  closeButtonHolder.setAttribute('class', 'close-button-holder');
+  divNote.appendChild(closeButtonHolder);
+  var closeButton = document.createElement('button');
+  closeButton.innerHTML = 'x';
+  closeButton.setAttribute('class', 'close-button');
+  closeButton.addEventListener('click', removeNoteClick);
+  closeButtonHolder.appendChild(closeButton);
+  var addHeader = document.createElement('h3');
+  addHeader.innerHTML = 'Add Note';
+  addHeader.setAttribute('class', 'add-header');
+  divNote.appendChild(addHeader);
+  var ta = document.createElement('textarea');
+  ta.setAttribute('id', 'textAreaNote');
+  divNote.appendChild(ta);
+
+  var buttonDiv = document.createElement('div');
+  divNote.appendChild(buttonDiv);
+
+  var btn = document.createElement('button');
+  btn.setAttribute('class', 'save-note-button');
+  btn.innerHTML = 'Submit';
+  btn.addEventListener('click', saveNoteClick);
+  buttonDiv.appendChild(btn);
+  document.getElementById('divSingle').appendChild(divHolder);
+
+}
+function saveNoteClick() {
+  var note = document.getElementById('textAreaNote').value;
+
+  currentFavoriteDish.notes.push(note);
+  displayNote(note);
+  removeNoteClick();
+
+}
+
+function removeNoteClick() {
+  var notesHolder = document.querySelector('.notes-holder');
+  notesHolder.remove();
+
+}
+
+function displayNote(note) {
+  var notesContainer = document.getElementById('notes-list');
+  var singleNote = document.createElement('li');
+  singleNote.textContent = note;
+  notesContainer.appendChild(singleNote);
 }

@@ -260,6 +260,58 @@ h1 {
   width: 100%;
 }
 
+.add-header {
+  font-family: 'Anton', sans-serif;
+  color: #4b4b4b;
+}
+
+.save-note-button {
+  color: white;
+  background-color: orange;
+  font-family: 'Anton', sans-serif;
+  border-radius: 5px;
+  border: none;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.notes-holder {
+  height: 450px;
+  position: absolute;
+  width: 89%;
+  margin-left: 70px;
+  top: 160px;
+  background-color: white;
+  border: solid orange;
+  text-align: center;
+}
+
+#textAreaNote {
+  width: 90%;
+  height: 200px;
+}
+
+.divNote {
+  height: 300px;
+}
+
+.close-button {
+  border: none;
+  background: no-repeat;
+  font-size: 20px;
+  padding: 25px;
+}
+
+.close-button-holder {
+  text-align: right;
+}
+
+.fav-notes {
+  font-size: 10px;
+  font-family: 'andika', sans-serif;
+  line-height: 3;
+}
+
 @media (max-width: 667px) {
   #food-choices {
     width: 90px;
@@ -333,5 +385,26 @@ h1 {
 
   .top-links a {
     margin-top: 15px;
+  }
+
+  #divAddNode {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+  }
+
+  .notes-holder {
+    height: 400px;
+    margin-left: 20px;
+  }
+
+  #textAreaNote {
+    width: 90%;
+    height: 200px;
+  }
+
+  .divNote {
+    height: 300px;
+    text-align: center;
   }
 }
