@@ -10,7 +10,9 @@ A dynamic HTML, CSS, and JavaScript solo project.
 
 # Live Demo
 
-[Munchies] (https://mohamed-elmessiry.github.io/ajax-project/)
+[Munchies] (https://mohamed-elmessiry.github.io/ajax-project)
+
+[tripster](https://github.com/Mohamed-Elmessiry/tripster) a recreational travel app
 
 # Features
 
