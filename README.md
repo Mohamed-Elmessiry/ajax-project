@@ -1,6 +1,7 @@
 
+# munchies
 
-## munchies is a web app created allowing users to search for recipes based on categories, and based on cuisine (chinese, italian, french....etc). The app allows users to view the ingredients of a single recipe and save the details of the recipe using local storage. The data is created by using Edamam's api using an XML HTTP request.
+munchies is a web app created allowing users to search for recipes based on categories, and based on cuisine (chinese, italian, french....etc). The app allows users to view the ingredients of a single recipe and save the details of the recipe using local storage. The data is created by using Edamam's api using an XML HTTP request.
 
 # Technologies Used
 
