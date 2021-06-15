@@ -14,6 +14,8 @@ munchies is a web app created allowing users to search for recipes based on cate
 [munchies]( https://mohamed-elmessiry.github.io/ajax-project )
 
 
+
+
 # Features
 
 * User can search for meals based on category or type of dish
@@ -22,3 +24,6 @@ munchies is a web app created allowing users to search for recipes based on cate
 * User can save recipe to favorites
 * User can add note to favorited recipe
 
+
+# Preview
+![](Ajax-gif.gif)
