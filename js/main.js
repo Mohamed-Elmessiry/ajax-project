@@ -23,6 +23,10 @@ function getRecipesBySearchTerm(searchTerm) {
   request.responseType = 'json';
   request.addEventListener('load', function () {
     dataArray = request.response;
+    var resultsHeading = document.createElement('h2');
+    resultsHeading.setAttribute('class', 'results-heading');
+    resultsHeading.innerHTML = 'Results';
+    resultsContainer.appendChild(resultsHeading);
 
     for (var i = 0; i < dataArray.hits.length; i++) {
       resultsContainer.appendChild(createElement(dataArray.hits[i]));
@@ -51,6 +55,7 @@ homeButton.addEventListener('click', function () {
   singleResultDiv.className = 'hidden';
   favoritesContainer.className = 'favorites hidden';
   singleDiv.className = 'single-favorite hidden';
+  resultsContainer.innerHTML = '';
 
 });
 
