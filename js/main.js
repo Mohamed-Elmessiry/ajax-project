@@ -137,7 +137,7 @@ function createDomTree(hit) {
       link: fullRecipeButton.href
 
     };
-    for (var k = 0; i < listItemsSelector.length; k++) {
+    for (var k = 0; k < listItemsSelector.length; k++) {
       values.ingredients.push(listItemsSelector[k].textContent);
 
     }
