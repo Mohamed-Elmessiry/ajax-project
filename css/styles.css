@@ -328,6 +328,34 @@ h1 {
   cursor: pointer;
 }
 
+.results-photo-div:hover {
+  cursor: pointer;
+  height: 320px;
+}
+
+.view-full-recipe:hover {
+  cursor: pointer;
+  background-color: #62605c;
+  color: white;
+}
+
+.save-to-favorites:hover {
+  cursor: pointer;
+  background-color: #62605c;
+  color: white;
+}
+
+.favorites-photo:hover {
+  cursor: pointer;
+  height: 320px;
+}
+
+.add-notes:hover {
+  cursor: pointer;
+  background-color: #62605c;
+  color: white;
+}
+
 @media (max-width: 667px) {
   #food-choices {
     width: 90px;
