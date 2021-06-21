@@ -27,13 +27,22 @@ function getRecipesBySearchTerm(searchTerm) {
     resultsHeading.setAttribute('class', 'results-heading');
     resultsHeading.innerHTML = 'Results';
     resultsContainer.appendChild(resultsHeading);
-
-    for (var i = 0; i < dataArray.hits.length; i++) {
-      resultsContainer.appendChild(createElement(dataArray.hits[i]));
+    if (dataArray.hits.length > 0) {
+      for (var i = 0; i < dataArray.hits.length; i++) {
+        resultsContainer.appendChild(createElement(dataArray.hits[i]));
+      }
+    } else {
+      resultsContainer.appendChild(noResults('No results available to display'));
     }
 
   });
   request.send();
+}
+
+function noResults(message) {
+  var noResultsMessage = document.createElement('p');
+  noResultsMessage.innerHTML = message;
+  return noResultsMessage;
 }
 
 function handleSearchSubmit() {
@@ -197,9 +206,12 @@ function displayFavorites(obj) {
 }
 
 function createFavorites(favoritesObject) {
-  for (var i = 0; i < favoritesObject.favorites.length; i++) {
-    favoritesContainer.appendChild(displayFavorites(data.favorites[i]));
-
+  if (favoritesObject.favorites.length > 0) {
+    for (var i = 0; i < favoritesObject.favorites.length; i++) {
+      favoritesContainer.appendChild(displayFavorites(data.favorites[i]));
+    }
+  } else {
+    favoritesContainer.appendChild(noResults('No favorites available to display'));
   }
 }
 
