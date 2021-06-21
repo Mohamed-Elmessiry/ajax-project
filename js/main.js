@@ -253,9 +253,12 @@ favoritesContainer.addEventListener('click', function () {
   }
 
 });
+
+var singleFavHolder = null;
+
 function createSingleFavorite(fav) {
 
-  var singleFavHolder = document.createElement('div');
+  singleFavHolder = document.createElement('div');
   singleFavHolder.setAttribute('class', 'fav-holder-single');
   var favtag = document.createElement('h3');
   favtag.setAttribute('class', 'favorites-tag');

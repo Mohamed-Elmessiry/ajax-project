@@ -312,6 +312,22 @@ h1 {
   line-height: 3;
 }
 
+.home:hover {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.favorites-button:hover {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.search:hover {
+  background-color: #62605c;
+  color: white;
+  cursor: pointer;
+}
+
 @media (max-width: 667px) {
   #food-choices {
     width: 90px;
