@@ -41,6 +41,7 @@ function getRecipesBySearchTerm(searchTerm) {
 
 function noResults(message) {
   var noResultsMessage = document.createElement('p');
+  noResultsMessage.setAttribute('class', 'noResult');
   noResultsMessage.innerHTML = message;
   return noResultsMessage;
 }
@@ -196,6 +197,7 @@ favoritesButton.addEventListener('click', function () {
   resultsContainer.className = 'results hidden';
   header.className = 'header-active';
   favoritesContainer.className = 'favorites';
+  // singleDiv.className = 'single-favorite hidden';
 
   createFavorites(data);
 });

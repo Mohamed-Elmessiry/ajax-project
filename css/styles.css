@@ -313,12 +313,12 @@ h1 {
 }
 
 .home:hover {
-  font-size: 20px;
+  text-decoration: underline;
   cursor: pointer;
 }
 
 .favorites-button:hover {
-  font-size: 20px;
+  text-decoration: underline;
   cursor: pointer;
 }
 
@@ -330,7 +330,7 @@ h1 {
 
 .results-photo-div:hover {
   cursor: pointer;
-  height: 320px;
+  border: solid orange;
 }
 
 .view-full-recipe:hover {
@@ -347,13 +347,18 @@ h1 {
 
 .favorites-photo:hover {
   cursor: pointer;
-  height: 320px;
 }
 
 .add-notes:hover {
   cursor: pointer;
   background-color: #62605c;
   color: white;
+}
+
+.noResult {
+  font-size: 10px;
+  font-family: 'andika', sans-serif;
+  padding-left: 10px;
 }
 
 @media (max-width: 667px) {
