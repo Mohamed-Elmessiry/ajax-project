@@ -56,6 +56,7 @@ homeButton.addEventListener('click', function () {
   favoritesContainer.className = 'favorites hidden';
   singleDiv.className = 'single-favorite hidden';
   resultsContainer.innerHTML = '';
+  singleResultHolder.remove();
 
 });
 
@@ -79,9 +80,12 @@ function createElement(obj) {
 
 var singleResultDiv = document.querySelector('.single-result');
 
+var singleResultHolder = null;
+
 function createDomTree(hit) {
-  var singleResultHolder = document.createElement('div');
+  singleResultHolder = document.createElement('div');
   singleResultHolder.setAttribute('class', 'result-holder-single');
+  singleResultDiv.classList.remove('hidden');
   var image = document.createElement('div');
   image.setAttribute('class', 'results-photo-div');
   image.style.backgroundImage = 'url(' + hit.recipe.image + ')';
