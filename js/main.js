@@ -65,9 +65,21 @@ homeButton.addEventListener('click', function () {
   favoritesContainer.className = 'favorites hidden';
   singleDiv.className = 'single-favorite hidden';
   resultsContainer.innerHTML = '';
-  singleResultHolder.remove();
+  if (singleResultHolder) {
+    singleResultHolder.remove();
+  }
+
+  clearFavorites();
 
 });
+
+function clearFavorites() {
+  var allFavDivs = document.querySelectorAll('.favorites-div');
+  for (var i = 0; i < allFavDivs.length; i++) {
+    allFavDivs[i].remove();
+  }
+
+}
 
 function createElement(obj) {
 
