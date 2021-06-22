@@ -355,6 +355,17 @@ h1 {
   color: white;
 }
 
+.save-note-button:hover {
+  cursor: pointer;
+  background-color: #62605c;
+  color: white;
+}
+
+.close-button:hover {
+  cursor: pointer;
+  color: #62605c;
+}
+
 .noResult {
   font-size: 10px;
   font-family: 'andika', sans-serif;
