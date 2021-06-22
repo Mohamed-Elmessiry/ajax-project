@@ -330,7 +330,7 @@ h1 {
 
 .results-photo-div:hover {
   cursor: pointer;
-  border: solid orange;
+  outline: solid orange;
 }
 
 .view-full-recipe:hover {
