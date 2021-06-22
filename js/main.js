@@ -196,7 +196,7 @@ favoritesButton.addEventListener('click', function () {
   body.className = 'body-active';
   resultsContainer.className = 'results hidden';
   header.className = 'header-active';
-  favoritesContainer.className = 'favorites';
+  favoritesContainer.classList.remove('hidden');
   // singleDiv.className = 'single-favorite hidden';
 
   createFavorites(data);
@@ -221,6 +221,7 @@ function displayFavorites(obj) {
 
 function createFavorites(favoritesObject) {
   if (favoritesObject.favorites.length > 0) {
+    clearFavorites();
     for (var i = 0; i < favoritesObject.favorites.length; i++) {
       favoritesContainer.appendChild(displayFavorites(data.favorites[i]));
     }
@@ -236,6 +237,7 @@ favoritesContainer.addEventListener('click', function () {
 
   if (event.target.matches('.favorites-photo')) {
     var favDiv = document.querySelector('.fav-holder-single');
+    singleDiv.classList.remove('hidden');
     if (favDiv) {
       favDiv.remove();
     }
