@@ -11,7 +11,7 @@ foodies is a web app created allowing users to search for recipes based on categ
 
 # Live Demo
 
-[munchies]( https://mohamed-elmessiry.github.io/ajax-project )
+[Foodies]( https://mohamed-elmessiry.github.io/ajax-project )
 
 
 
