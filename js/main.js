@@ -41,6 +41,7 @@ function getRecipesBySearchTerm(searchTerm) {
 
 function noResults(message) {
   var noResultsMessage = document.createElement('p');
+  noResultsMessage.setAttribute('class', 'noResult');
   noResultsMessage.innerHTML = message;
   return noResultsMessage;
 }
@@ -65,9 +66,21 @@ homeButton.addEventListener('click', function () {
   favoritesContainer.className = 'favorites hidden';
   singleDiv.className = 'single-favorite hidden';
   resultsContainer.innerHTML = '';
-  singleResultHolder.remove();
+  if (singleResultHolder) {
+    singleResultHolder.remove();
+  }
+
+  clearFavorites();
 
 });
+
+function clearFavorites() {
+  var allFavDivs = document.querySelectorAll('.favorites-div');
+  for (var i = 0; i < allFavDivs.length; i++) {
+    allFavDivs[i].remove();
+  }
+
+}
 
 function createElement(obj) {
 
@@ -183,7 +196,8 @@ favoritesButton.addEventListener('click', function () {
   body.className = 'body-active';
   resultsContainer.className = 'results hidden';
   header.className = 'header-active';
-  favoritesContainer.className = 'favorites';
+  favoritesContainer.classList.remove('hidden');
+  singleDiv.textContent = ' ';
 
   createFavorites(data);
 });
@@ -207,6 +221,7 @@ function displayFavorites(obj) {
 
 function createFavorites(favoritesObject) {
   if (favoritesObject.favorites.length > 0) {
+    clearFavorites();
     for (var i = 0; i < favoritesObject.favorites.length; i++) {
       favoritesContainer.appendChild(displayFavorites(data.favorites[i]));
     }
@@ -222,6 +237,7 @@ favoritesContainer.addEventListener('click', function () {
 
   if (event.target.matches('.favorites-photo')) {
     var favDiv = document.querySelector('.fav-holder-single');
+    singleDiv.classList.remove('hidden');
     if (favDiv) {
       favDiv.remove();
     }
@@ -241,9 +257,12 @@ favoritesContainer.addEventListener('click', function () {
   }
 
 });
+
+var singleFavHolder = null;
+
 function createSingleFavorite(fav) {
 
-  var singleFavHolder = document.createElement('div');
+  singleFavHolder = document.createElement('div');
   singleFavHolder.setAttribute('class', 'fav-holder-single');
   var favtag = document.createElement('h3');
   favtag.setAttribute('class', 'favorites-tag');
