@@ -197,7 +197,7 @@ favoritesButton.addEventListener('click', function () {
   resultsContainer.className = 'results hidden';
   header.className = 'header-active';
   favoritesContainer.classList.remove('hidden');
-  // singleDiv.className = 'single-favorite hidden';
+  singleDiv.textContent = ' ';
 
   createFavorites(data);
 });
