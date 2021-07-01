@@ -89,7 +89,7 @@ function createElement(obj) {
   var photoDiv = document.createElement('div');
   photoDiv.style.backgroundImage = 'url(' + obj.recipe.image + ')';
   photoDiv.setAttribute('class', 'results-photo-div');
-  photoDiv.setAttribute('id', obj.recipe.label);
+  photoDiv.setAttribute('id', obj.recipe.uri);
   resultHolder.appendChild(photoDiv);
   var dishName = document.createElement('h1');
   dishName.setAttribute('class', 'dish-name');
@@ -150,7 +150,7 @@ function createDomTree(hit) {
   saveButton.addEventListener('click', function save() {
 
     for (var i = 0; i < data.favorites.length; i++) {
-      if (data.favorites[i].dish === dishName.textContent) {
+      if (data.favorites[i].photo === 'url(\\"' + hit.recipe.image + '\\")') {
         return;
       }
 
@@ -179,7 +179,7 @@ resultsContainer.addEventListener('click', function SingleDishDisplay(event) {
 
   if (event.target.matches('.results-photo-div')) {
     for (var i = 0; i < dataArray.hits.length; i++) {
-      if (dataArray.hits[i].recipe.label === event.target.getAttribute('id')) {
+      if (dataArray.hits[i].recipe.uri === event.target.getAttribute('id')) {
         resultsContainer.className = 'hidden';
 
         singleResultDiv.appendChild(createDomTree(dataArray.hits[i]));
@@ -209,7 +209,7 @@ function displayFavorites(obj) {
   var photo = document.createElement('div');
   photo.className = 'favorites-photo';
   photo.style.backgroundImage = obj.photo;
-  photo.setAttribute('id', obj.dish);
+  photo.setAttribute('id', obj.photo);
   favoritesDiv.appendChild(photo);
   var dish = document.createElement('h1');
   dish.textContent = obj.dish;
@@ -241,9 +241,8 @@ favoritesContainer.addEventListener('click', function () {
     if (favDiv) {
       favDiv.remove();
     }
-
     for (var i = 0; i < data.favorites.length; i++) {
-      if (data.favorites[i].dish === event.target.getAttribute('id')) {
+      if (data.favorites[i].photo === event.target.getAttribute('id')) {
 
         currentFavoriteDish = data.favorites[i];
         if (!currentFavoriteDish.notes) {
