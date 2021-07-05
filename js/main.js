@@ -22,20 +22,33 @@ function getRecipesBySearchTerm(searchTerm) {
   request.open('GET', 'https://api.edamam.com/search?q=' + searchTerm + '&app_id=fded7f13&app_key=fe0290905c896adb657df2abeca75626');
   request.responseType = 'json';
   request.addEventListener('load', function () {
-    dataArray = request.response;
-    var resultsHeading = document.createElement('h2');
-    resultsHeading.setAttribute('class', 'results-heading');
-    resultsHeading.innerHTML = 'Results';
-    resultsContainer.appendChild(resultsHeading);
-    if (dataArray.hits.length > 0) {
-      for (var i = 0; i < dataArray.hits.length; i++) {
-        resultsContainer.appendChild(createElement(dataArray.hits[i]));
+    if (request.status === 200) {
+      dataArray = request.response;
+      var resultsHeading = document.createElement('h2');
+      resultsHeading.setAttribute('class', 'results-heading');
+      resultsHeading.innerHTML = 'Results';
+      resultsContainer.appendChild(resultsHeading);
+      if (dataArray.hits.length > 0) {
+        for (var i = 0; i < dataArray.hits.length; i++) {
+          resultsContainer.appendChild(createElement(dataArray.hits[i]));
+        }
+      } else {
+        resultsContainer.appendChild(noResults('No results available to display'));
       }
     } else {
-      resultsContainer.appendChild(noResults('No results available to display'));
+      resultsContainer.appendChild(noResults('An error occured, request could not be handled, please contact support'));
+      // eslint-disable-next-line no-console
+      console.log(request);
     }
-
   });
+  request.addEventListener('error', function () {
+    resultsContainer.appendChild(noResults('Network error occured, please try again later'));
+  });
+
+  request.addEventListener('timeout', function () {
+    resultsContainer.appendChild(noResults('Request test timed out, please try again later'));
+  });
+
   request.send();
 }
 
