@@ -33,7 +33,7 @@ function getRecipesBySearchTerm(searchTerm) {
           resultsContainer.appendChild(createElement(dataArray.hits[i]));
         }
       } else {
-        resultsContainer.appendChild(noResults('No results available to display'));
+        resultsContainer.appendChild(noResults(' No results available to display'));
       }
     } else {
       resultsContainer.appendChild(noResults('An error occured, request could not be handled, please contact support'));
